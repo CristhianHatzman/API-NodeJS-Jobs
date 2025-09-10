@@ -1,7 +1,7 @@
 import Film from "../models/Films.js";
 
 class filmeService {
-  async getAll() {
+  async GetAll() {
     try {
       const films = await Film.find();
       return films;
@@ -10,7 +10,7 @@ class filmeService {
     }
   }
 
-  async createFilm(name, year, duration, director, genre) {
+  async CreateFilm(name, year, duration, director, genre) {
     try {
       const newFilm = new Film({
         name,
@@ -20,6 +20,15 @@ class filmeService {
         genre,
       });
       await newFilm.save();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async DeleteFilm(id) {
+    try {
+      const deletedFilm = await Film.findByIdAndDelete(id);
+      return deletedFilm;
     } catch (error) {
       console.log(error);
     }

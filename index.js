@@ -7,9 +7,12 @@ import filmRouter from "./routes/filmRouter.js";
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb://localhost:27017/films");
+mongoose.connect("mongodb://localhost:27017/films"); // Conexão com o MongoDB localmente.
+
 app.use("/", filmRouter);
-const PORT = 3200;
+
+const PORT = 3200; // Definição da porta que a API irá rodar.
+
 app.listen(PORT, (error) => {
   if (error) {
     console.log(error);
