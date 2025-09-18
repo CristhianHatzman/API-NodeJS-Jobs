@@ -4,6 +4,8 @@
 # Rodando na porta 3200
 # Rota para funcionamento /jobs
 
+# npm install express nodemon mongoose mongodb
+
 <!-- [
   {
     "title": "Desenvolvedor Backend Node.js",
