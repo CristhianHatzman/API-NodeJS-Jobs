@@ -66,7 +66,7 @@ const deleteJob = async (req, res) => {
 const UpdateJob = async (req, res) => {
   try {
     if (ObjectId.isValid(req.params.id)) {
-      const id = req.params;
+      const id = req.params.id;
       const {
         title,
         seniority,
@@ -78,7 +78,7 @@ const UpdateJob = async (req, res) => {
         jobFunction,
         requirements,
       } = req.body;
-      const updatedJob = await JobService.UpdateJob(
+      const updatedJob = await JobService.updatedJob(
         id,
         title,
         seniority,
@@ -102,4 +102,23 @@ const UpdateJob = async (req, res) => {
   }
 };
 
-export default { getAllJobs, createJob, deleteJob, UpdateJob };
+const getOneJob = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      const job = await JobService.GetOne(id);
+      if (job) {
+        res.status(200).json({ job: job });
+      } else {
+        res.status(404).json({ error: "Job não encontrado." });
+      }
+    } else {
+      res.status(400).json({ error: "ID inválido." });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno no servidor." });
+  }
+};
+
+export default { getAllJobs, createJob, deleteJob, UpdateJob, getOneJob };

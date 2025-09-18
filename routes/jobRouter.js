@@ -1,9 +1,11 @@
 import express from "express";
-const filmRouter = express.Router();
-import filmController from "../controllers/filmController.js";
+const JobRouter = express.Router();
+import JobsController from "../controllers/jobController.js";
 
-filmRouter.get("/filmes", filmController.getAllFilms);
-filmRouter.post("/filmes", filmController.createFilm);
-filmRouter.delete("/filmes/:id", filmController.deleteFilm);
+JobRouter.get("/jobs", JobsController.getAllJobs);
+JobRouter.post("/jobs", JobsController.createJob);
+JobRouter.delete("/jobs/:id", JobsController.deleteJob);
+JobRouter.put("/jobs/:id", JobsController.UpdateJob);
+JobRouter.get("/jobs/:id", JobsController.getOneJob);
 
-export default filmRouter;
+export default JobRouter;

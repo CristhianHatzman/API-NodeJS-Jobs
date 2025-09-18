@@ -1,15 +1,16 @@
 import Express from "express";
-import mongoose from "mongoose";
-import Film from "./models/Films.js";
 const app = Express();
-import filmRouter from "./routes/filmRouter.js";
+import mongoose from "mongoose";
+
+import Job from "./models/Job.js";
+import JobRouter from "./routes/jobRouter.js";
 
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb://localhost:27017/films"); // Conexão com o MongoDB localmente.
+mongoose.connect("mongodb://localhost:27017/jobs"); // Conexão com o MongoDB localmente.
 
-app.use("/", filmRouter);
+app.use("/", JobRouter);
 
 const PORT = 3200; // Definição da porta que a API irá rodar.
 
